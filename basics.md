@@ -74,3 +74,25 @@ arr2 = [[0] * n] * n  # (X)
 
 배열 초기화 시, arr1을 선언한 방법으로 해야 함.  
 arr2를 선언한 방법으로 하면 n개의 [0] * n은 모두 같은 객체로 인식하여, 값 변경 시 틀림.  
+</br>
+
+# 4. product  
+
+### 프로그래머스 Lv. 2 - *모음 사전*  
+
+```python
+from itertools import product
+
+
+# product
+def solution(word):
+    alpha = ['A', 'E', 'I', 'O', 'U']
+    answer = []
+    for i in range(1, len(alpha) + 1):
+        answer.extend(list(map(''.join, list(product(alpha, repeat=i)))))
+
+    return sorted(answer).index(word) + 1
+```  
+
+product의 경우, combinations, permutations와는 달리, 중복 포함 몇 개 뽑을지를 **repeat** 인자에 넘겨줘야 함.  
+(그냥 product(alpha, 1))처럼 쓰면 오류 발생.)  
