@@ -96,3 +96,31 @@ def solution(word):
 
 product의 경우, combinations, permutations와는 달리, 중복 포함 몇 개 뽑을지를 **repeat** 인자에 넘겨줘야 함.  
 (그냥 product(alpha, 1))처럼 쓰면 오류 발생.)  
+</br>  
+
+# 5. Heap 활용  
+
+### 프로그래머스 Lv. 3 - *야근 지수*  
+
+```python
+from heapq import heapify, heappush, heappop
+
+
+def solution(n, works):
+    if sum(works) <= n:
+        return 0
+    works = [-1 * w for w in works]
+    heapify(works)
+    for _ in range(n):
+        heappush(works, heappop(works) + 1)
+
+    return sum([w ** 2 for w in works])
+```  
+
+파이썬의 **heapq** 모듈을 활용해 우선순위 큐를 구현할 수 있음.  
+기본적으로 최소 힙 형태로 정렬되고, 음수를 곱하여 최대 힙으로 활용 가능.  
+최댓값, 최솟값을 매우 빠르게 찾을 수 있음.  
+
+**heapify(l)**: 매개변수로 주어진 리스트 l을 즉시 heap으로 변환. (*O(N)*)  
+**heappush(heap, item)**: item을 heap에 추가.  
+**heappop(heap)**: heap의 최솟값을 return. (빈 heap일 경우 IndexError)  
