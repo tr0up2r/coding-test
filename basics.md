@@ -124,3 +124,20 @@ def solution(n, works):
 **heapify(l)**: 매개변수로 주어진 리스트 l을 즉시 heap으로 변환. (*O(N)*)  
 **heappush(heap, item)**: item을 heap에 추가.  
 **heappop(heap)**: heap의 최솟값을 return. (빈 heap일 경우 IndexError)  
+</br>  
+
+# 6. lambda 활용  
+
+### 프로그래머스 Lv. 2 - *방금그곡*  
+
+```python
+# ... 중략 ...
+answer.append((idx, info_list[2], playtime))
+
+answer.sort(key=lambda x: (x[2], -x[0]))
+return answer[-1][1]
+```  
+
+iterable 자료형을 원소로 가지는 list를 sort할 때, key에 lambda 함수를 넣어 특정 원소를 기준으로 정렬할 수 있음.  
+위 문제에서는 playtime이 가장 긴 원소를 반환하되, 가장 긴 playtime을 가지는 원소가 여러 개일 경우, idx가 제일 작은 것을 반환해야 했음.  
+이럴 경우 key를 위와 같이 넣어주면, playtime 기준 오름차순 정렬 후, playtime이 같은 원소는 idx 기준 내림차순 정렬할 수 있음.  
