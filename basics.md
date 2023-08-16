@@ -141,7 +141,21 @@ return answer[-1][1]
 iterable 자료형을 원소로 가지는 list를 sort할 때, key에 lambda 함수를 넣어 특정 원소를 기준으로 정렬할 수 있음.  
 위 문제에서는 playtime이 가장 긴 원소를 반환하되, 가장 긴 playtime을 가지는 원소가 여러 개일 경우, idx가 제일 작은 것을 반환해야 했음.  
 이럴 경우 key를 위와 같이 넣어주면, playtime 기준 오름차순 정렬 후, playtime이 같은 원소는 idx 기준 내림차순 정렬할 수 있음.  
-</br>  
+
+### 백준 실버 3 - *패션왕 신해빈 (9375번)*  
+
+```python
+from functools import reduce
+
+# ... 중략 ...
+
+counts = list(map(lambda x: x+1, d.values()))
+print(reduce(lambda x, y: x * y, counts)-1)
+```  
+
+lambda와 **reduce**를 결합해, list의 각 원소들에 특정 연산을 적용한 뒤, 그것을 누적한 하나의 결과값을 낼 수 있음.  
+위 문제에선 list의 모든 원소들의 곱을 구하는 데 사용해봤음.  
+</br>
 
 # 7. Dictionary (dict) 활용  
 
