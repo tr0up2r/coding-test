@@ -141,3 +141,30 @@ return answer[-1][1]
 iterable 자료형을 원소로 가지는 list를 sort할 때, key에 lambda 함수를 넣어 특정 원소를 기준으로 정렬할 수 있음.  
 위 문제에서는 playtime이 가장 긴 원소를 반환하되, 가장 긴 playtime을 가지는 원소가 여러 개일 경우, idx가 제일 작은 것을 반환해야 했음.  
 이럴 경우 key를 위와 같이 넣어주면, playtime 기준 오름차순 정렬 후, playtime이 같은 원소는 idx 기준 내림차순 정렬할 수 있음.  
+</br>  
+
+# 7. Dictionary (dict) 활용  
+
+### 백준 실버 4 - *나는야 포켓몬 마스터 이다솜 (1620번)*  
+
+```python
+import sys
+
+
+n, m = map(int, input().split())
+names = dict()
+
+for i in range(1, n+1):
+    names[sys.stdin.readline().rstrip()] = i
+
+nums = dict(map(reversed, names.items()))
+
+for _ in range(m):
+    now = sys.stdin.readline().rstrip()
+    if now.isalpha():
+        print(names[now])
+    else:
+        print(nums[int(now)])
+```  
+
+map을 이용해 dict의 모든 원소에 **reversed**를 적용해주면 **key, value가 뒤바뀐 새 dictionary**를 생성할 수 있음.  
