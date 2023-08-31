@@ -63,6 +63,30 @@ def solution(str1, str2):
 
 Counter 객체에 &, |과 같은 집합 연산자 사용 가능.  
 & 는 value가 작은 것을 기준으로, |는 value가 큰 것을 기준으로 하나씩 가져옴.  
+
+### 백준 실버 3 - *통계학 (2108번)*  
+
+```python
+from collections import Counter
+
+
+n = int(input())
+arr = []
+for _ in range(n):
+    arr.append(int(input()))
+arr.sort()
+
+# ... 중략 ...
+
+c = Counter(arr).most_common()
+if len(c) > 2 and c[0][1] == c[1][1]:
+    print(c[1][0])
+else:
+    print(c[0][0])
+```  
+
+Counter의 most_common() 함수를 사용하면 **<빈도수 기준 내림차순, 빈도수 같으면 값 기준 오름차순>** 으로 tuple들이 정렬된 list가 반환됨.  
+list의 tuple들은 **(값, 빈도수)** 로 구성되어 있음.  
 </br>
 
 # 3. 배열 초기화  
