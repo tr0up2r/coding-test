@@ -218,7 +218,7 @@ def solution(arr):
 
 # 9. 정렬 구현  
 
-### 9-1) *합병 정렬*  
+### 9-1) *합병 정렬 (O(NlogN))*  
 
 ```python
 n = int(input())
@@ -259,3 +259,16 @@ merge_sort(0, len(arr)-1)
 for n in arr:
     print(n)
 ```  
+
+### 9-2) *계수 정렬 (O(N+K))*  
+
+```python
+n = int(input())
+arr = [0] * 10001
+for _ in range(n):
+    arr[int(input())] += 1
+
+for i in range(1, 10001):
+    for _ in range(arr[i]):
+        print(i)
+```
