@@ -295,4 +295,27 @@ for _ in range(n):
 for i in range(1, 10001):
     for _ in range(arr[i]):
         print(i)
-```
+```  
+</br>
+
+# 10. 누적합  
+
+### 백준 실버 3 - *구간 합 구하기 4 (11659번)*  
+
+```python
+import sys
+
+
+n, m = map(int, input().split())
+arr = list(map(int, input().split()))
+for i in range(1, n):
+    arr[i] += arr[i-1]
+
+for _ in range(m):
+    i, j = map(int, sys.stdin.readline().rstrip().split())
+    i -= 1
+    j -= 1
+    print(arr[j] if i == 0 else arr[j]-arr[i-1])
+```  
+
+누적합 배열을 만든 후, index로 접근하여 구간합을 상수 시간에 구할 수 있음.  
