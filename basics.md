@@ -343,3 +343,37 @@ for _ in range(m):
 ```  
 
 누적합 배열을 만든 후, index로 접근하여 구간합을 상수 시간에 구할 수 있음.  
+</br>
+
+# 11. Floyd-Warshall 알고리즘 예시  
+
+### 백준 실버 1 - *케빈 베이컨의 6단계 법칙 (1389번)*  
+
+```python
+n, m = map(int, input().split())
+arr = [[0]*n for _ in range(n)]
+for _ in range(m):
+    a, b = map(int, input().split())
+    arr[a-1][b-1], arr[b-1][a-1] = 1, 1
+
+# Floyd-Warshall 풀이
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            if k == j:
+                continue
+            if arr[i][k] and arr[k][j]:
+                if arr[i][j] == 0:
+                    arr[i][j] = arr[i][k]+arr[k][j]
+                else:
+                    arr[i][j] = min(arr[i][j], arr[i][k]+arr[k][j])
+
+min_i = 0
+min_s = 1e9
+for i in range(n):
+    now_s = sum(arr[i])
+    if now_s < min_s:
+        min_i, min_s = i, now_s
+
+print(min_i+1)
+```  
