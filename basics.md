@@ -148,7 +148,31 @@ def solution(n, works):
 **heapify(l)**: 매개변수로 주어진 리스트 l을 즉시 heap으로 변환. (*O(N)*)  
 **heappush(heap, item)**: item을 heap에 추가.  
 **heappop(heap)**: heap의 최솟값을 return. (빈 heap일 경우 IndexError)  
-</br>  
+
+### 백준 실버 1 - *절댓값 힙 (11286번)*  
+
+```python
+import sys
+from heapq import heappop, heappush
+
+
+n = int(input())
+heap = []
+
+for _ in range(n):
+    x = int(sys.stdin.readline().rstrip())
+    if x:
+        heappush(heap, (abs(x), x))
+    else:
+        if heap:
+            print(heappop(heap)[1])
+        else:
+            print(0)
+```  
+
+heap에 튜플을 넣을 경우, index가 작은 값을 기준으로 먼저 비교를 해나감.  
+즉, (a, b)와 같은 tuple들이 heap에 존재할 경우, 먼저 a가 작은 순으로 정렬되고, a가 같으면 b가 작은 순으로 정렬됨.  
+</br>
 
 # 6. lambda 활용  
 
