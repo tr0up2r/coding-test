@@ -416,4 +416,44 @@ dijkstra(start)
 
 for d in distance[1:]:
     print('INF' if d == 1e9 else d)
-```
+```  
+
+기본 다익스트라 알고리즘.
+
+### 백준 골드 4 - *녹색 옷 입은 애가 젤다지? (4485번)*  
+
+```python
+from heapq import heappush, heappop
+
+
+dr = [-1, 1, 0, 0]
+dc = [0, 0, -1, 1]
+
+count = 1
+while True:
+    n = int(input())
+    if n == 0:
+        break
+
+    arr = []
+    for _ in range(n):
+        arr.append(list(map(int, input().split())))
+    money = [[1e9]*n for _ in range(n)]
+
+    queue = []
+    heappush(queue, (arr[0][0], 0, 0))
+    money[0][0] = arr[0][0]
+    while queue:
+        now, r, c = heappop(queue)
+        for i in range(4):
+            nr, nc = r+dr[i], c+dc[i]
+            if 0 <= nr < n and 0 <= nc < n and now+arr[nr][nc] < money[nr][nc]:
+                money[nr][nc] = now+arr[nr][nc]
+                heappush(queue, (now+arr[nr][nc], nr, nc))
+
+    print(f'Problem {count}: {money[n-1][n-1]}')
+    count += 1
+```  
+
+2차원 배열이 주어졌을 때, **heapq**와 **다익스트라 알고리즘**을 활용하여 특정 지점까지 가는데 소모해야 하는 최소 weight를 찾을 수 있음.  
+</br>
