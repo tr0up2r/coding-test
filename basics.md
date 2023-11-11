@@ -456,4 +456,28 @@ while True:
 ```  
 
 2차원 배열이 주어졌을 때, **heapq**와 **다익스트라 알고리즘**을 활용하여 특정 지점까지 가는데 소모해야 하는 최소 weight를 찾을 수 있음.  
-</br>
+</br>  
+
+# 13. 0-1 Knapsack problem  
+
+### 백준 골드 5 - *평범한 배낭 (12865번)*  
+
+```python
+n, k = map(int, input().split())
+stuff = [[0, 0]]
+dp = [[0]*(k+1) for _ in range(n+1)]
+for _ in range(n):
+    stuff.append(list(map(int, input().split())))
+
+for i in range(1, n+1):
+    for j in range(1, k+1):
+        w, v = stuff[i]
+        if j < w:
+            dp[i][j] = dp[i-1][j]
+        else:
+            dp[i][j] = max(v+dp[i-1][j-w], dp[i-1][j])
+print(dp[n][k])
+```  
+
+담을 수 있는 물건이 나누어질 수 없는 경우, 가치의 합이 최대가 되도록 짐을 골라 담는 문제. 2차원 dp를 위와 같이 활용하여 풀 수 있다.  
+</br>  
